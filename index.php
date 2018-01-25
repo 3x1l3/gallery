@@ -1,24 +1,26 @@
 <?php
 
-  define('BASE_DIR','./pics/');
+$cfg = require_once('./config.php');
+
+var_dump($_SERVER);
+
   $dirArray = (isset($_GET['dir'])?$_GET['dir']:[]);
 
   $data['dirs'] = [];
   $data['images'] = [];
-  $excludedFileNames = ['.'];
 
-  $currentDirectory = BASE_DIR.implode('/',$dirArray);
+  $currentDirectory = $cfg['base_dir'].implode('/',$dirArray);
 
   foreach (scandir($currentDirectory) as $file) {
     $fullPath = $currentDirectory.'/'.$file;
 
-    if (in_array($file, $excludedFileNames) )
+    if (in_array($file, $cfg['excluded_files']) )
       continue;
 
       if (is_dir($fullPath)) {
           $data['dirs'][] = $file;
       } else if (exif_imagetype($fullPath)!==false) {
-        $data['images'][] = $file;
+          $data['images'][] = $file;
       }
   }
 
@@ -79,7 +81,7 @@
                 <span class="sr-only">(current)</span>
               </a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item">BASE_DIR
               <a class="nav-link" href="#">About</a>
             </li>
             <li class="nav-item">
@@ -98,7 +100,9 @@
     <!-- Page Content -->
     <div class="container">
 
-      <h3 class="my-4 text-center text-lg-left">Directory of <?php echo BASE_DIR.implode('/',$dirArray); ?></h3>
+      <h3 class="my-4 text-center text-lg-left">Directory of <?php echo  $cfg['base_dir'].implode('/',$dirArray); ?>
+        <a href="#rand" class="btn btn-dark">Random</a>
+      </h3>
 
 
       <?php if (count($data['dirs'])>0) { ?>
