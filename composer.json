@@ -1,5 +1,7 @@
 {
     "require": {
-        "symfony/http-foundation": "^3.4"
+        "symfony/http-foundation": "^3.4",
+        "twbs/bootstrap": "4.0.0",
+        "components/jquery": "^3.2"
     }
 }

@@ -1,4 +1,5 @@
 <?php
+require_once('./vendor/autoload.php');
 
 /*
  Opting for an array configuration instead of constants. I don't like constants.
