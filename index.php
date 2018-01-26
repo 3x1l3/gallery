@@ -2,7 +2,6 @@
 
 $cfg = require_once('./config.php');
 
-var_dump($_SERVER);
 
   $dirArray = (isset($_GET['dir'])?$_GET['dir']:[]);
 
@@ -101,7 +100,7 @@ var_dump($_SERVER);
     <div class="container">
 
       <h3 class="my-4 text-center text-lg-left">Directory of <?php echo  $cfg['base_dir'].implode('/',$dirArray); ?>
-        <a href="#rand" class="btn btn-dark">Random</a>
+        <a href="?rand=" class="btn btn-dark float-right btn-sm"><i class="fas fa-random"></i> Random</a>
       </h3>
 
 
